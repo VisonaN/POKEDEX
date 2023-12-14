@@ -17,6 +17,19 @@ const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
         console.log('Requisição concluída!')
     })
 
+
+    fetch(url) // Promisse e sua interface usando arrow function
+    .then((response) => response.json()) // Quando tiver uma linha pode fazer assim na arrow function, sem corpo && O que vai no primeiro .then() é o retorno da promisse, nesse caso a fetch(url)
+    .then((jsonBody) => jsonBody.results)
+    .then((pokemonList) => {
+        for (let i = 0; i < pokemonList.length; i++) {
+            const pokemon = pokemonList[i];
+            pokemonLista.innerHTML += convertPokemonToLi(pokemon)
+        }
+    }) // O que vai pro segundo .then() é o retorno do primeiro .then()
+    .catch((error) => console.error(error))
+    .finally(() => console.log('Requisição concluída!'))
+
 */
 
 function convertPokemonToLi(pokemon) {
@@ -38,14 +51,12 @@ function convertPokemonToLi(pokemon) {
 
 const pokemonLista = document.getElementById('pokemonList')
 
-fetch(url) // Promisse e sua interface usando arrow function
-    .then((response) => response.json()) // Quando tiver uma linha pode fazer assim na arrow function, sem corpo && O que vai no primeiro .then() é o retorno da promisse, nesse caso a fetch(url)
-    .then((jsonBody) => jsonBody.results)
-    .then((pokemonList) => {
-        for (let i = 0; i < pokemonList.length; i++) {
-            const pokemon = pokemonList[i];
-            pokemonLista.innerHTML += convertPokemonToLi(pokemon)
-        }
-    }) // O que vai pro segundo .then() é o retorno do primeiro .then()
-    .catch((error) => console.error(error))
-    .finally(() => console.log('Requisição concluída!'))
+pokeApi.getPokemons().then((pokemonList) => {
+    const listItens = []
+    pokemonList.map()
+    for (let i = 0; i < pokemonList.length; i++) {
+        const pokemon = pokemonList[i];
+        listItens.push(convertPokemonToLi(pokemon))
+    }
+    console.log(listItens)
+})
