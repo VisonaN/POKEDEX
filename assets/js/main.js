@@ -1,7 +1,3 @@
-const offset = 0
-const limit = 10
-const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
-
 /**
     fetch(url) // Promisse e sua interface
     .then(function (response) {
@@ -51,12 +47,25 @@ function convertPokemonToLi(pokemon) {
 
 const pokemonLista = document.getElementById('pokemonList')
 
-pokeApi.getPokemons().then((pokemonList) => {
-    const listItens = []
-    pokemonList.map()
+pokeApi.getPokemons().then((pokemonList = []) => {
+    
+    pokemonLista.innerHTML += pokemonList.map(convertPokemonToLi).join('')
+
+})
+
+/*
+    const novaLista = pokemonList.map(convertPokemonToLi).join('') 
+    // const novaLista = pokemonList.map(convertPokemonToLi) Isso é a mesma coisa que const novaLista = pokemonList.map((pokemon) => convertPokemonToLi(pokemon)) <= isso
+    
+    mesma coisa que isso =>
+    const newHtml = novaLista
+    pokemonLista.innerHTML += newHtml
+
+    //const listItens = []
+
     for (let i = 0; i < pokemonList.length; i++) {
         const pokemon = pokemonList[i];
         listItens.push(convertPokemonToLi(pokemon))
     }
-    console.log(listItens)
-})
+    console.log(listItens) 
+*/
