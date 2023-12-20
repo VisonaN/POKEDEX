@@ -4,13 +4,16 @@
 }
 
 body {
-    background-color: #f6f8fc;
+    background-color: #75757575;
 }
 
 .content {
-    height: 100vh;
-    width: 100vw;
+    height: min-content;
+    width: 90vw;
     padding: 1rem;
+    margin: 15px ;
+    border-radius: 15px;
+    box-shadow: black;
     background-color: white;
 }
 
